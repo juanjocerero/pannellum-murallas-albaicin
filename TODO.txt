@@ -5,3 +5,4 @@ Limpiar audios y optimizar tamaño de mp3/webm
 Optimizar tamaño de imágenes multires para webm
 Icono para ocultar botones de información
 El icono de play siempre debería reproducir o parar el audio de la escena en la que estoy
+¿Poner sólo una vez cada punto de información?
