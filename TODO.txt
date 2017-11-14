@@ -4,3 +4,4 @@ Rehacer puntos de volver atrás (180º sobre punto central)
 Icono para ocultar botones de información
 El icono de play siempre debería reproducir o parar el audio de la escena en la que estoy
 ¿Poner sólo una vez cada punto de información?
+Si hay audio sonando en el evento de cambiar escena, pararlo

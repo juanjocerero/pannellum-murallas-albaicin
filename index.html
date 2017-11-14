@@ -168,6 +168,7 @@
       firstScene: 'sanCristobal',
       fallback: 'someUrl',
       preview: '/img/background.jpg',
+      hfov: isMobile ? 50 : 100,
     },
     scenes: {
       sanCristobal: {
@@ -187,7 +188,8 @@
           yaw: 0.0722565236784988,
           type: 'scene',
           sceneId: 'arcoElvira',
-          text: 'Hacia el Arco de Elvira'
+          text: 'Hacia el Arco de Elvira',
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
@@ -209,13 +211,21 @@
           type: 'scene',
           text: 'Hacia Puerta Monaita',
           sceneId: 'puertaMonaita',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       puertaMonaita: {
         title: 'Puerta Monaita (Zirí)',
-        panorama: '/img/3_ziri_puerta_monaita.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/3_ziri_puerta_monaita/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/3_ziri_puerta_monaita/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -223,13 +233,21 @@
           type: 'scene',
           text: 'Hacia Dar-al-Horra',
           sceneId: 'darAlHorraInterior',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       darAlHorraInterior: {
         title: 'Dar-Al-Horra (Zirí)',
-        panorama: '/img/4_ziri_dar_al_horra.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/4_ziri_dar_al_horra/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/4_ziri_dar_al_horra/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -237,13 +255,21 @@
           type: 'scene',
           text: 'Hacia el exterior',
           sceneId: 'darAlHorraExterior',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       darAlHorraExterior: {
         title: 'Dar-Al-Horra (Zirí)',
-        panorama: '/img/5_ziri_dar_al_horra.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/5_ziri_dar_al_horra/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/5_ziri_dar_al_horra/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -251,13 +277,21 @@
           type: 'scene',
           text: 'Hacia el Huerto del Carlos',
           sceneId: 'huertoDelCarlos',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       huertoDelCarlos: {
         title: 'Huerto del Carlos (Zirí)',
-        panorama: '/img/6_ziri_huerto_del_carlos.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/6_ziri_huerto_del_carlos/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/6_ziri_huerto_del_carlos/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1048
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -265,13 +299,21 @@
           type: 'scene',
           text: 'Hacia el Aljibe del Rey',
           sceneId: 'aljibeDelRey',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       aljibeDelRey: {
         title: 'Aljibe del Rey (Zirí)',
-        panorama: '/img/7_ziri_aljibe_del_rey.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/7_ziri_aljibe_del_rey/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/7_ziri_aljibe_del_rey/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -279,13 +321,21 @@
           type: 'scene',
           text: 'Continuar el recorrido',
           sceneId: 'aljibeDelReyOtro',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       aljibeDelReyOtro: {
         title: 'Aljibe del Rey (Zirí)',
-        panorama: '/img/8_ziri_aljibe_de_rey.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/8_ziri_aljibe_de_rey/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/8_ziri_aljibe_de_rey/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -293,13 +343,21 @@
           type: 'scene',
           text: 'Hacia el Arco de las Pesas',
           sceneId: 'arcoPesas',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       arcoPesas: {
         title: 'Arco de las Pesas (Zirí)',
-        panorama: '/img/9_ziri_arco_pesas.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/9_ziri_arco_pesas/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/9_ziri_arco_pesas/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -307,13 +365,21 @@
           type: 'scene',
           text: 'Hacia la Verea de Enmedio',
           sceneId: 'vereaEnmedio',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       vereaEnmedio: {
         title: 'Verea de Enmedio (Nazarí)',
-        panorama: '/img/10_nazari_verea_enmedio.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/10_nazari_verea_enmedio/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/10_nazari_verea_enmedio/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -321,13 +387,21 @@
           type: 'scene',
           text: 'Hacia el Sacromonte',
           sceneId: 'sacromonte',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       sacromonte: {
         title: 'Sacromonte (Nazarí)',
-        panorama: '/img/11_nazari_sacromonte_san_miguel.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/11_nazari_sacromonte_san_miguel/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/11_nazari_sacromonte_san_miguel/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -335,13 +409,21 @@
           type: 'scene',
           text: 'Hacia el mirador de San Miguel',
           sceneId: 'sanMiguel',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       sanMiguel: {
         title: 'San Miguel (Nazarí)',
-        panorama: '/img/12_nazari_san_miguel.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/12_nazari_san_miguel/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/12_nazari_san_miguel/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -349,13 +431,21 @@
           type: 'scene',
           text: 'Hacia Fajalauza',
           sceneId: 'fajalauza',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       fajalauza: {
         title: 'Fajalauza (Nazarí)',
-        panorama: '/img/13_nazari_fajalauza_up.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/13_nazari_falajauza_up/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/13_nazari_falajauza_up/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -363,13 +453,21 @@
           type: 'scene',
           text: 'Hacia la Muralla Alberzana',
           sceneId: 'murallaAlberzana',
-          cssClass: 'custom-scene-hotspot-icon'
+          cssClass: 'custom-scene-forwards-icon'
         }
         ]
       },
       murallaAlberzana: {
         title: 'Muralla Alberzana (Nazarí)',
-        panorama: '/img/14_nazari_alberzana.jpg'
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/14_nazari_alberzana/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/14_nazari_alberzana/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1704
+        },
       }
     }
   })
