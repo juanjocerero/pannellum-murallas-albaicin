@@ -1,5 +1,1 @@
-Rehacer puntos de entrada
-Rehacer puntos de cambio de escena
-Rehacer puntos de volver atrás (180º sobre punto central)
 Icono para ocultar botones de información (cambiar clase)
-¿Poner sólo una vez cada punto de información?
