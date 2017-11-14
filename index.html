@@ -125,6 +125,7 @@
     <div id="audio-container" class="row text-center hide">
       <div class="col-xs-12">
         <button id="play-pause-button"></button>
+        <button id="hide-info-icons-button"></button>
       </div>
     </div>
   </div>
@@ -136,7 +137,8 @@
 <script>
   let sound = null
   let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-  
+  let infoIconsAreHidden = false
+
   const handlePlayPause = () => {
     sound.playing() ? sound.pause() : sound.play()
   }
@@ -162,6 +164,16 @@
   $('body').on('click', '#play-pause-button', event => {
     !sound.playing() ? setButtonAsPlaying() : setButtonAsPaused()
     handlePlayPause()
+  })
+
+  $('body').on('click', '#hide-info-icons-button', event => {
+    if (infoIconsAreHidden) {
+      $('.custom-scene-forwards-icon').removeClass('hidden')
+      infoIconsAreHidden = false
+    } else {
+      $('.custom-scene-forwards-icon').addClass('hidden')
+      infoIconsAreHidden = true
+    }
   })
   
   const viewer = pannellum.viewer('pannellum-container', {
