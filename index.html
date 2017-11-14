@@ -150,8 +150,8 @@
     let span = document.createElement('span')
     span.innerHTML = args.text
     hotspotDiv.appendChild(span)
-    span.style.width = `${span.scrollWidth + 110}px`
-    span.style.marginLeft = `${-(span.scrollWidth - hotspotDiv.offsetWidth)}px`
+    span.style.width = `${span.scrollWidth - 20}px`
+    span.style.marginLeft = `${-(span.scrollWidth - hotspotDiv.offsetWidth - 30)}px`
     span.style.marginTop = `${-span.scrollHeight - 12}px`
   }
   
@@ -380,8 +380,8 @@
   
   viewer.on('load', () => {
     switch (viewer.getScene()) {
-      case 'arcoElvira':
-      loadTrack('test')
+      case 'sanCristobal':
+      loadTrack('1')
       break;
       default:
       break;
@@ -391,7 +391,7 @@
   const loadTrack = audioFile => {
     $('#audio-container').hasClass('hide') ? $('#audio-container').removeClass('hide') : null
     sound = new Howl({
-      src: [`/audio/${audioFile}.mp3`],
+      src: [`/audio/processed/${audioFile}.mp3`],
       html5: true
     })
     sound.once('load', () => {
