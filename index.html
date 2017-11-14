@@ -113,6 +113,10 @@
     #audio-container {
       margin-top: 1em;
     }
+    
+    .newTab {
+      margin-top: 1em;
+    }
   </style>
 </head>
 <body>
@@ -128,7 +132,7 @@
         <button id="hide-info-icons-button"></button>
       </div>
     </div>
-    <div class="row text-center">
+    <div class="row text-center newTab">
       <div class="col-xs-12">
         <span><a href="">Haz clic aquí para ver el recorrido a pantalla completa en otra pestaña</a></span>
       </div>
@@ -143,7 +147,7 @@
   let sound = null
   let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   let infoIconsAreHidden = false
-
+  
   const handlePlayPause = () => {
     sound.playing() ? sound.pause() : sound.play()
   }
@@ -151,7 +155,7 @@
   const setButtonAsPlaying = () => {
     $('#play-pause-button').addClass('paused')
   }
-
+  
   const setButtonAsPaused = () => {
     $('#play-pause-button').removeClass('paused')
   }
@@ -162,7 +166,7 @@
     span.innerHTML = args.text
     hotspotDiv.appendChild(span)
     span.style.width = `${span.scrollWidth - 20}px`
-    span.style.marginLeft = `${-(span.scrollWidth - hotspotDiv.offsetWidth - 30)}px`
+    span.style.marginLeft = args.text.split(' ').length > 4 ? `${-(span.scrollWidth - (hotspotDiv.offsetWidth * 3.5))}px` : `${-span.scrollWidth - hotspotDiv.offsetWidth + 110}px`
     span.style.marginTop = `${-span.scrollHeight - 12}px`
   }
   
@@ -170,20 +174,20 @@
     !sound.playing() ? setButtonAsPlaying() : setButtonAsPaused()
     handlePlayPause()
   })
-
+  
   $('body').on('click', '#hide-info-icons-button', event => {
     if (infoIconsAreHidden) {
-      $('.custom-scene-forwards-icon').removeClass('hidden')
+      $('.custom-scene-info-icon').removeClass('hidden')
       infoIconsAreHidden = false
     } else {
-      $('.custom-scene-forwards-icon').addClass('hidden')
+      $('.custom-scene-info-icon').addClass('hidden')
       infoIconsAreHidden = true
     }
   })
   
   const viewer = pannellum.viewer('pannellum-container', {
     default: {
-      hotSpotDebug: true,
+      hotSpotDebug: false,
       sceneFadeDuration: 500,
       type: 'multires',
       firstScene: 'sanCristobal',
@@ -204,12 +208,41 @@
         },
         hotSpots: [
         {
-          pitch: 3.995614252449831,
-          yaw: 0.0722565236784988,
+          pitch: 11.37684974322736,
+          yaw: -169.24217435613826,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'El austero estilo gótico de la <strong>Iglesia de San Cristóbal</strong> es de la primera etapa del mudéjar de Granada. Fue el primer templo de la ciudad en levantarse en sustitución de una mezquita. A las bóvedas góticas de crucería se añaden los elementos mudéjares, como la sencilla portada ojuval de ladrillo, a imitación del mudéjar sevillano, o las armaduras de madera realizadas durante la ampliación del templo (1540-1559).'
+          }
+        },
+        {
+          pitch: -0.07397824296981302,
+          yaw: 28.43791839250695,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'El <strong>Carmen del Aljibe del Rey</strong> está en el corazón del Albaicín, entre la muralla Zirí y la Placeta del Cristo de las Azucenas. En el mismo edificio se integra el mayor aljibe del Albaicín del siglo XI, que presta su nombre al edificio.'
+          }
+        },
+        {
+          pitch: 1.8391041410755873,
+          yaw: 19.797043372407096,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Torre de las Tres Caras</strong>, actualmente en restauración por un proyecto para recuperar las murallas del Albaicín promovido por el Instituto del Patrimonio Cultural de España, que contará con una inversión de 1,4 millones por parte de la Secretaría de Estado de Cultura. Las obras se centran en cuatro tramos de la muralla interior conocida como zirí: la Torre de las Tres Caras, la puerta de Hernán Román, torres y restos de lienzos situados en la plaza del Cementerio de San Nicolás, y entre la calle Horno de San Agustín y el convento de las madres Agustinas de Santo Tomás de Villanueva.'
+          }
+        },
+        {
+          pitch: -8.69933685856185,
+          yaw: 103.5672377374994,
           type: 'scene',
           sceneId: 'arcoElvira',
           text: 'Hacia el Arco de Elvira',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: 15.664266261322902,
+          targetYaw: 46.46275327705451
         }
         ]
       },
@@ -225,12 +258,49 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: 13.78727427866835,
+          yaw: 23.87453558969643,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Puerta de Elvira</strong> fue la entrada principal a la Granada islámica. Su nombre proviene de que conectaba con la calle del mismo nombre (<em>Zanaqat Ilbira</em>), la vía más larga y principal de la ciudad. Por estar en llano y ser el principal acceso a la ciudad terminó convirtiéndose en una auténtica puerta-fortaleza, que en época cristiana tendría, incluso, alcaide propio. Se construyó entre los siglos XI y XIV. Hoy sólo queda un gran arco de época nazarí, uno de los estribos laterales y el trazado en recodo de las calle Elvira y Horno de Merced.'
+          }
+        },
+        {
+          pitch: 14.616577073658558,
+          yaw: 44.32469064171931,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Puerta Monaita o Bab al-Unaydar</strong> es una de las 7 puertas con que contó la Alcazaba Qadima del Albayzín, junto con las conservadas de Hernán Román y de las Pesas. Era el acceso principal extramuros a la Alcazaba, así como al alcázar zirí erigido intramuros por el rey Badis (1038-1073). Fue construida a mediados del siglo XI. El espectador podrá observar al exterior un arco de herradura realizado en piedra, rodeado por un alfiz. La portada se inserta en una torre realizada con cajones de mampostería entre hiladas de ladrillo.'
+          }
+        },
+        {
+          pitch: -0.9483489644847659,
+          yaw: -116.76277751731753,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Normal</strong>, es un edificio situado al final de la Gran Vía, frente al Instituto Padre Suárez, y sirve de unión con los Jardines del Triunfo y la Avenida de la Constitución. Fue auspiciado por los  empresarios de la remolacha de la vega granadina en el mismo lugar donde había numerosas viviendas de la antigua ciudad musulmana. Comenzó a construirse en 1924 y fue inaugurada el 1 de octubre de 1933 por el primer Presidente de la II República, Niceto Alcalá Zamora. El director de la obra fue el arquitecto granadino Leopoldo Torres Balbás, entonces encargado de restaurar la Alhambra. Mezcla elementos mudéjares y detalles renacentistas.'
+          }
+        },
+        {
+          pitch: 23.117871346624494,
+          yaw: 46.39802837151737,
           type: 'scene',
           text: 'Hacia Puerta Monaita',
           sceneId: 'puertaMonaita',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: -4.82578091214869,
+          targetYaw: -170.3981160801081
+        },
+        {
+          pitch: 15.664266261322902,
+          yaw: 46.46275327705451 - 180,
+          type: 'scene',
+          text: 'Volver a San Cristóbal',
+          sceneId: 'sanCristobal',
+          cssClass: 'custom-scene-back-icon',
         }
         ]
       },
@@ -246,12 +316,42 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: 19.063622065737295,
+          yaw: -172.20744711950533,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Puerta Monaita</strong>'
+          }
+        },
+        {
+          pitch: 16.022365601609632,
+          yaw: 122.6808685797457,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Iglesia de San Cristóbal</strong>'
+          }
+        },
+        {
+          pitch: 36.19263168730502,
+          yaw: -171.47855562731743,
           type: 'scene',
           text: 'Hacia Dar-al-Horra',
           sceneId: 'darAlHorraInterior',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: -2.8986713644457875,
+          targetYaw: -59.270255355720536
+        },
+        {
+          pitch: -4.82578091214869,
+          yaw: -170.3981160801081 - 180,
+          type: 'scene',
+          text: 'Volver al Arco de Elvira',
+          sceneId: 'arcoElvira',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: 15.664266261322902,
+          targetYaw: 46.46275327705451
         }
         ]
       },
@@ -267,12 +367,60 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: 2.683137419839654,
+          yaw: -88.52565787044635,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Aljibe del Rey</strong>'
+          }
+        },
+        {
+          pitch: 3.230665271899936,
+          yaw: -37.805703885642856,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'Granada responde al modelo histórico de ciudad-colina, rodeada de montañas y regada por los ríos Darro y Genil. Sobre la margen izquierda, llamada la Sabika, se asienta <strong>la Alhambra</strong>. No es casual que Muhammad I (1237-1273) eligiera un lugar tan privilegiado: responde a una decisión geopolítica acorde con la mentalidad medieval. La supremacía del lugar y el control del territorio lo eran todo en la organización de un reino en el s. XIII, en el que poder militar y organización administrativa requerían un enclave que asegurase la presencia física del poder sobre la ciudad, a la vez que se mantenía separado de ella.'
+          }
+        },
+        {
+          pitch: 6.100534496228963,
+          yaw: -44.25706375879113,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Sierra Nevada</strong> es un macizo montañoso que pertenece a los sistemas Penibéticos. Es el de mayor altitud de toda Europa occidental, después de los Alpes. Su altitud máxima se alcanza en el pico Mulhacén, de 3.482 metros. En 1986 fue declarada Reserva de la Biosfera por la UNESCO y en 1999 Parque nacional por sus valores botánicos, paisajísticos y naturales. En sus faldas se encuentra la estación de esquí situada más al sur de Europa y de mayor altitud de España.'
+          }
+        },
+        {
+          pitch: 5.331801187451328,
+          yaw: -173.89882659057417,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Iglesia de San Cristóbal</strong>'
+          }
+        },
+        {
+          pitch: -2.328524702943259,
+          yaw: -84.59224209619738,
           type: 'scene',
           text: 'Hacia el exterior',
           sceneId: 'darAlHorraExterior',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: -3.911560709972335,
+          targetYaw: -154.18559791955414
+        },
+        {
+          pitch: -2.8986713644457875,
+          yaw: -59.270255355720536 + 180,
+          type: 'scene',
+          text: 'Volver a Puerta Monaita',
+          sceneId: 'puertaMonaita',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: -4.82578091214869,
+          targetYaw: -170.3981160801081
         }
         ]
       },
@@ -288,12 +436,51 @@
         },
         hotSpots: [
         {
+          pitch: 3.2503513649735174,
+          yaw: -191.81968397543807,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Iglesia de San Cristóbal</strong>'
+          }
+        },
+        {
+          pitch: -9.558190193743943,
+          yaw: -143.3250108960246,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Alcazaba Cadima</strong> o ‘antigua‘ de Granada está en la zona más alta del actual Albaicín, donde se levantaba la ciudad ibero-romana que recibía el nombre de <em>Eliberri</em>. Allí los musulmanes levantaron poderosas murallas sobre las viejas de los romanos. Las primeras reconstrucciones datan del periodo califal, pero las más poderosas son del periodo zirí (S. XI), cuando ya se había establecido el Reino de Granada. El extenso lienzo de murallas extendido entre las puertas de Monaita y de las Pesas es uno de los escasos restos que quedan hoy día en pie de la antigua Alcazaba. El mejor lugar para admirarlo es el mirador de San Cristóbal.'
+          }
+        },
+        {
+          pitch: 7.246119207712585,
+          yaw: -53.392348361228244,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'El <strong>Carmen de los Rodríguez Acosta</strong>, también llamado de la Concepción, es considerado como el más grande del Albaicín. Ocupa tres cuartas partes de una vasta manzana que delimitan las calles Aljibe de la Gitana, Cristo de las Azucenas, Pilar Seco, Camino Nuevo de San Nicolás y María de la Miel.'
+          }
+        },
+        {
           pitch: -0.2790511712913286,
           yaw: -0.25960107592566717,
           type: 'scene',
           text: 'Hacia el Huerto del Carlos',
           sceneId: 'huertoDelCarlos',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: -6.873688260210399,
+          targetYaw: 8.309955336174959
+        },
+        {
+          pitch: -3.911560709972335,
+          yaw: -154.18559791955414 + 180,
+          type: 'scene',
+          text: 'Volver al interior',
+          sceneId: 'darAlHorraInterior',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: -2.8986713644457875,
+          targetYaw: -59.270255355720536
         }
         ]
       },
@@ -309,12 +496,60 @@
         },
         hotSpots: [
         {
+          pitch: 3.5585746418729243,
+          yaw: -45.74387614904899,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Torre de la Vela</strong> fue nombrada en época nazarí torre Mayor y durante el siglo XVI puerta del Sol, ya que se refleja en la fachada de mediodía actuando como un reloj de sol para la ciudad. Originalmente tuvo almenas en la terraza como elemento defensivo, aunque se perdieron a causa de seísmos. Un elemento importante es su campana, cuyo resonar sirvió de alerta en muchas ocasiones a la población por diversas causas: levantamientos, conmemoraciones, ordenanzas, etc. Una barbacana que daba acceso a la Alcazaba recorre la base de la torre. Comunica con la gran puerta de las Armas y las caballerizas.'
+          }
+        },
+        {
+          pitch: 0.09079245544896826,
+          yaw: 53.02334452416496,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'Fundado como convento en 1504 por Isabel la Católica, <strong>Santa Isabel La Real</strong> se construyó entre los años 1574 y 1592 sobre parte de un antiguo palacio de los reyes musulmanes. La capilla mayor es gótica, con pirámides, molduras y pechinas realizadas en ese estilo. El retablo mayor está copiosamente decorado con pinturas y esculturas de santos. En el interior se exponen obras de artistas como Pedro de Mena o Bocanegra. Alberga la sepultura del escultor Bernardo Francisco de Mora.'
+          }
+        },
+        {
+          pitch: 4.946107969879905,
+          yaw: -212.09334524235533,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Iglesia de San Cristóbal</strong>'
+          }
+        },
+        {
+          pitch: 4.304908243787697,
+          yaw: -195.1479447747873,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Aljibe del Rey</strong>'
+          }
+        },
+        {
           pitch: -0.2790511712913286,
           yaw: -0.25960107592566717,
           type: 'scene',
           text: 'Hacia el Aljibe del Rey',
           sceneId: 'aljibeDelRey',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: -8.19326133699155,
+          targetYaw: 26.90280819771749
+        },
+        {
+          pitch: -4.665556706801866,
+          yaw: -59.076017842590225 + 180,
+          type: 'scene',
+          text: 'Volver a Dar-al-Horra',
+          sceneId: 'darAlHorraExterior',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: -3.911560709972335,
+          targetYaw: -154.18559791955414
         }
         ]
       },
@@ -330,12 +565,78 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: 3.3836751914488916,
+          yaw: -6.599400716060622,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>La Alhambra</strong>'
+          }
+        },
+        {
+          pitch: 0.9824454966777123,
+          yaw: 6.883213144900893,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'Las tres <strong>Torres Bermejas</strong>, probablemente construidas en tiempos de Mohamed I, fundador de la dinastía nazarí, en el siglo XI, están situadas en los puntos estratégicos que circundaban la Vega de Granada. Sobresale en tamaño la central y un acusado baluarte de artillería de época cristiana. Se observan gran cantidad de losas de sepulturas musulmanas, lo que evidencia que las torres fueron reforzadas por los cristianos. Están enlazadas mediante una muralla con la Alcazaba de la Alhambra.'
+          }
+        },
+        {
+          pitch: -13.252171010052821,
+          yaw: 31.976495654229264,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'Al <strong>Huerto del Carlos</strong> se le puede considerar un auténtico solar de reyes. Formó parte del foro romano en  la antigua provincia romana del <em>municipium florentinum Iliberitanum</em>. De sus entrañas emergieron los  grandiosos cimientos del palacio del rey Badis. También fue parte de la rica hacienda nazarí; finalmente, fue la huerta del convento que fundó la mismísima Isabel la Católica.'
+          }
+        },
+        {
+          pitch: -8.046044269054367,
+          yaw: 65.02879370889607,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Santa Isabel La Real</strong>'
+          }
+        },
+        {
+          pitch: -6.6630199876805065,
+          yaw: 103.28376455023246,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Dar-al-Horra</strong>'
+          }
+        },
+        {
+          pitch: 3.5173989673221717,
+          yaw: -180.622614003006,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>San Cristóbal</strong>'
+          }
+        },
+        {
+          pitch: -8.866850840390004,
+          yaw: -152.4074383871795,
           type: 'scene',
           text: 'Continuar el recorrido',
           sceneId: 'aljibeDelReyOtro',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: 8.943069852780024,
+          targetYaw: -175.84247159649777
+        },
+        {
+          pitch: -8.19326133699155,
+          yaw: 26.90280819771749 - 90,
+          type: 'scene',
+          text: 'Volver al Huerto del Carlos',
+          sceneId: 'huertoDelCarlos',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: -4.665556706801866,
+          targetYaw: -59.076017842590225
         }
         ]
       },
@@ -351,12 +652,33 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: -19.45015641207458,
+          yaw: -62.57831944831294,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Alcazaba Cadima</strong> o ‘antigua‘ de Granada está en la zona más alta del actual Albaicín, donde se levantaba la ciudad ibero-romana que recibía el nombre de <em>Eliberri</em>. Allí los musulmanes levantaron poderosas murallas sobre las viejas de los romanos. Las primeras reconstrucciones datan del periodo califal, pero las más poderosas son del periodo zirí (S. XI), cuando ya se había establecido el Reino de Granada. El extenso lienzo de murallas extendido entre las puertas de Monaita y de las Pesas es uno de los escasos restos que quedan hoy día en pie de la antigua Alcazaba. El mejor lugar para admirarlo es el mirador de San Cristóbal.'
+          }
+        },
+        {
+          pitch: -8.866850840390004,
+          yaw: -152.4074383871795,
           type: 'scene',
           text: 'Hacia el Arco de las Pesas',
           sceneId: 'arcoPesas',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: 8.943069852780024,
+          targetYaw: -175.84247159649777
+        },
+        {
+          pitch: -8.866850840390004,
+          yaw: -152.4074383871795  + 180,
+          type: 'scene',
+          text: 'Volver al Aljibe del Rey',
+          sceneId: 'aljibeDelRey',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: -8.19326133699155,
+          targetYaw: 26.90280819771749
         }
         ]
       },
@@ -372,12 +694,40 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: 0.8948403466619975,
+          yaw: -188.45661514796737,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Puerta de las Pesas</strong>, ubicada junto a la actual Plaza Larga, es una de los accesos que formó parte de la muralla que cercaba la Alcazaba Qadima. Su nombre más popular se debe a que allí se depositaban las pesas confiscadas por defectuosas desde que a finales del siglo XVI la plaza del Ensanche y la inmediata Plaza Larga, construida en 1576, se convirtieran en el centro neurálgico del Albaicín repoblado tras la guerra de los Moriscos. Probablemente fue edificada durante la invasión almorávide para facilitar la comunicación entre la <em>Alcazaba Qadima</em> y el incipiente arrabal del Albaicín.'
+          }
+        },
+        {
+          pitch: 4.54469878427915,
+          yaw: -14.456625602524607,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'El corazón del Albaicín, <strong>Plaza Larga</strong> tiene comercio, mercado, vida. Está llena de bares en los que disfrutar del Albaicín.'
+          }
+        },
+        {
+          pitch: 11.726356651983773,
+          yaw: -10.866674019304332,
           type: 'scene',
           text: 'Hacia la Verea de Enmedio',
           sceneId: 'vereaEnmedio',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: -2.4625091781723447,
+          targetYaw: -136.0634873249729
+        },
+        {
+          pitch: 8.943069852780024,
+          yaw: -175.84247159649777 + 180,
+          type: 'scene',
+          text: 'Volver al Aljibe del Rey',
+          sceneId: 'aljibeDelReyOtro',
+          cssClass: 'custom-scene-back-icon'
         }
         ]
       },
@@ -393,12 +743,60 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: -21.25283402164248,
+          yaw: 139.20468738985815,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'El <strong>Mirador de Mario Maya</strong> debe su nombre a Mario Maya Fajardo, quien fue bailaor flamenco y coreógrafo gitano que inició su carrera en las cuevas del Sacromonte de Granada.'
+          }
+        },
+        {
+          pitch: -0.9951563842896857,
+          yaw: -147.97143680119342,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>La Alhambra</strong>'
+          }
+        },
+        {
+          pitch: 17.343758180307706,
+          yaw: -46.125573691173415,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'Con la expansión del Albaicín durante la larga época nazarí, la ciudadela se fortifica con todo un nuevo anillo defensivo. Esta <strong>muralla nazarí</strong> cuenta con un tramo llamado Muralla Alberzana (“campo de naranjos”), que parte de la Cuesta de San Antonio, corre paralela a la Carretera de Murcia y llega hasta Fajalauza.'
+          }
+        },
+        {
+          pitch: -18.515324057268643,
+          yaw: -128.55283184486646,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: `<strong>El Sacromonte</strong> es un barrio situado en la zona oriental de la capital. Es una de las seis barriadas que conforman el distrito del Albaicín. Se encuentra en el valle de Valparaíso y frente a la Alhambra, lugares emblemáticos de Granada,  en cada una de las orillas del río Darro, cuyo nombre parece derivar de la expresión <em>D'auro</em> («de oro») por sus famosos yacimientos de este metal precioso.`
+          }
+        },
+        {
+          pitch: 1.4663784266490278,
+          yaw: -75.81073597247861,
           type: 'scene',
           text: 'Hacia el Sacromonte',
           sceneId: 'sacromonte',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: 14.942596720858884,
+          targetYaw: -110.49651624135898
+        },
+        {
+          pitch: -2.4625091781723447,
+          yaw: -136.0634873249729 + 180,
+          type: 'scene',
+          text: 'Volver al Arco de las Pesas',
+          sceneId: 'arcoPesas',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: 8.943069852780024,
+          targetYaw: -175.84247159649777
         }
         ]
       },
@@ -414,12 +812,60 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: -0.869801995034351,
+          yaw: 43.06493896909137,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>La Alhambra</strong>'
+          }
+        },
+        {
+          pitch: 19.70023858452062,
+          yaw: -133.246501708941687,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>La muralla Nazarí</strong>'
+          }
+        },
+        {
+          pitch: -17.648213652137194,
+          yaw: 182.62752066727535,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'Las <strong>cuevas</strong> son las viviendas habituales del Sacromonte; su origen no está muy claro. Se debieron construir sobre el s. XVI, cuando la población musulmana y judía fue expulsada de sus hogares. A estos se unieron los gitanos, de costumbres nómadas. Las cuevas surgieron para los marginados, extramuros de la ciudad, por lo que implicaba estar fuera del control administrativo y orden eclesiástico.'
+          }
+        },
+        {
+          pitch: -5.0888975903482265,
+          yaw: 108.93407877117143,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Iglesia de El Salvador</strong> se sitúa en la parte más antigua del Albaicín, en la intersección de la Calle Panaderos con la Cuesta del Chapiz. Es de estilo mudéjar. Fue edificada sobre la antigua Mezquita Mayor de Granada, que se situaba en el Albaicín, construida por  los musulmanes de Baeza cuando llegaron a esta ciudad en el siglo XIII. Se la consideraba por aquella época una de las más bellas mezquitas del mundo islámico.'
+          }
+        },
+        {
+          pitch: 17.932091475712085,
+          yaw: -152.7673911530561,
           type: 'scene',
           text: 'Hacia el mirador de San Miguel',
           sceneId: 'sanMiguel',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: -2.667251758619962,
+          targetYaw: -1.259725168273508
+        },
+        {
+          pitch: 14.942596720858884,
+          yaw: -110.49651624135898 + 180,
+          type: 'scene',
+          text: 'Volver a la Verea de Enmedio',
+          sceneId: 'vereaEnmedio',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: -2.4625091781723447,
+          targetYaw: -136.0634873249729
         }
         ]
       },
@@ -435,20 +881,59 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: -2.4385664987902587,
+          yaw: 165.76228113617893,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'En la <strong>Ermita de San Miguel</strong> se erigió uno de los torreones nazaríes de mayores dimensiones. Fue conocido como torre del Aceituno, pues la tradición decía que había sido construida sobre el antiguo emplazamiento de una iglesia cristiana en cuyo perímetro existió un olivo de leyenda capaz de florecer, echar fruto y madurar en una misma jornada. La torre fue demolida en 1671 para erigir una ermita al arcángel San Miguel en memoria del primitivo templo cristiano. Ampliada en el siglo XVIII, fue destruido por las tropas francesas y reconstruida un estilo de escasa relevancia artística.'
+          }
+        },
+        {
+          pitch: -10.199884131913379,
+          yaw: 8.660024540029035,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'En 1994, <strong>el Albaicín</strong> fue declarado Patrimonio de la Humanidad por la Unesco como ampliación del conjunto monumental de la Alhambra y el Generalife.'
+          }
+        },
+        {
+          pitch: -3.5674073919184557,
+          yaw: -45.342062592531335,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>La Alhambra</strong>'
+          }
+        },
+        {
+          pitch: -11.719181611270116,
+          yaw: 60.665922727125114,
           type: 'scene',
           text: 'Hacia Fajalauza',
           sceneId: 'fajalauza',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: -0.6865469595019951,
+          targetYaw: 150.6083795706534
+        },
+        {
+          pitch: -2.667251758619962,
+          yaw: -1.259725168273508,
+          type: 'scene',
+          text: 'Volver al Sacromonte',
+          sceneId: 'sacromonte',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: 14.942596720858884,
+          targetYaw: -110.49651624135898
         }
         ]
       },
       fajalauza: {
         title: 'Fajalauza (Nazarí)',
         multiRes: {
-          "path": "/img/multi/13_nazari_falajauza_up/%l/%s%y_%x",
-          "fallbackPath": "/img/multi/13_nazari_falajauza_up/fallback/%s",
+          "path": "/img/multi/13_nazari_fajalauza_up/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/13_nazari_fajalauza_up/fallback/%s",
           "extension": "jpg",
           "tileResolution": 512,
           "maxLevel": 3,
@@ -456,12 +941,42 @@
         },
         hotSpots: [
         {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: -6.506118790526446,
+          yaw: -67.16897764669207,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>Puerta de Fajalauza</strong> es uno de los seis accesos que tuvo la muralla del Albaicín. Fue levantada a mediados del siglo XIV por el hayib Ridwan, ministro de Yusuf I, para la defensa del primitivo arrabal de los Halconeros o del Albaicín (<em>Rabad al-Bayyazin</em>). En este lugar, desde 1517, existieron activos talleres de cerámica, uno de los cuales ha permanecido activo hasta nuestros días, pasando así a denominarse la cerámica popular granadina como cerámica de Fajalauza.'
+          }
+        },
+        {
+          pitch: 10.051546171194131,
+          yaw: 143.0549429045988,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: '<strong>Ermita de San Miguel</strong>'
+          }
+        },
+        {
+          pitch: -13.503018527484054,
+          yaw: -56.29044894676754,
           type: 'scene',
           text: 'Hacia la Muralla Alberzana',
           sceneId: 'murallaAlberzana',
-          cssClass: 'custom-scene-forwards-icon'
+          cssClass: 'custom-scene-forwards-icon',
+          targetPitch: -2.860996031058363,
+          targetYaw: -146.54180712269527
+        },
+        {
+          pitch: -0.6865469595019951,
+          yaw: 150.6083795706534 - 180,
+          type: 'scene',
+          text: 'Volver al Mirador de San Miguel',
+          sceneId: 'sanMiguel',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: -2.667251758619962,
+          targetYaw: -1.259725168273508
         }
         ]
       },
@@ -475,6 +990,36 @@
           "maxLevel": 3,
           "cubeResolution": 1704
         },
+        hotSpots: [
+        {
+          pitch: 10.712373872407339,
+          yaw: 54.58364764182428,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>muralla de la Alberzana</strong> debe su nombre a las plantaciones de naranjos que en época nazarí existieron en sus inmediaciones. Formó parte de la extensa muralla del Albaicín, construida para proteger al inmenso barrio extramuros formado por la población que emigraba hacia la capital del único reino musulmán que quedaba en la península.'
+          }
+        },
+        {
+          pitch: 4.466646290915384,
+          yaw: -172.04193314907351,
+          cssClass: 'custom-scene-info-icon',
+          createTooltipFunc: hotspot,
+          createTooltipArgs: {
+            text: 'La <strong>muralla de la Alberzana</strong> debe su nombre a las plantaciones de naranjos que en época nazarí existieron en sus inmediaciones. Formó parte de la extensa muralla del Albaicín, construida para proteger al inmenso barrio extramuros formado por la población que emigraba hacia la capital del único reino musulmán que quedaba en la península.'
+          }
+        },
+        {
+          pitch: -2.860996031058363,
+          yaw: -146.54180712269527 + 180,
+          type: 'scene',
+          text: 'Volver a Fajalauza',
+          sceneId: 'fajalauza',
+          cssClass: 'custom-scene-back-icon',
+          targetPitch: -0.6865469595019951,
+          targetYaw: 150.6083795706534
+        }
+        ]
       }
     }
   })
