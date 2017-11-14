@@ -183,29 +183,25 @@
         },
         hotSpots: [
         {
-          pitch: -5.035437737678261,
-          yaw: -7.27960107592566717,
-          type: 'info',
-          text: 'Hacia el Arco de Elvira',
-          cssClass: 'custom-scene-info-icon',
-          createTooltipFunc: hotspot,
-          createTooltipArgs: {
-            text: 'asdafsdasas'
-          }
-        },
-        {
-          pitch: -0.2790511712913286,
-          yaw: -0.25960107592566717,
+          pitch: 3.995614252449831,
+          yaw: 0.0722565236784988,
           type: 'scene',
-          text: 'Hacia el Arco de Elvira',
           sceneId: 'arcoElvira',
-          cssClass: 'custom-scene-hotspot-icon'
+          text: 'Hacia el Arco de Elvira'
         }
         ]
       },
       arcoElvira: {
         title: 'Arco de Elvira (Zirí)',
-        panorama: '/img/2_ziri_arco_elvira.jpg',
+        type: 'multires',
+        multiRes: {
+          "path": "/img/multi/2_ziri_arco_elvira/%l/%s%y_%x",
+          "fallbackPath": "/img/multi/2_ziri_arco_elvira/fallback/%s",
+          "extension": "jpg",
+          "tileResolution": 512,
+          "maxLevel": 3,
+          "cubeResolution": 1048
+        },
         hotSpots: [
         {
           pitch: -0.2790511712913286,
@@ -382,9 +378,48 @@
     switch (viewer.getScene()) {
       case 'sanCristobal':
       loadTrack('1')
-      break;
+      break
+      case 'arcoElvira':
+      loadTrack('2')
+      break
+      case 'puertaMonaita':
+      loadTrack('3')
+      break
+      case 'darAlHorraInterior':
+      loadTrack('4')
+      break
+      case 'darAlHorraExterior':
+      loadTrack('5')
+      break
+      case 'huertoDelCarlos':
+      loadTrack('6')
+      break
+      case 'aljibeDelRey':
+      loadTrack('7')
+      break
+      case 'aljibeDelReyOtro':
+      loadTrack('8')
+      break
+      case 'arcoPesas':
+      loadTrack('9')
+      break
+      case 'vereaEnmedio':
+      loadTrack('10')
+      break
+      case 'sacromonte':
+      loadTrack('11')
+      break
+      case 'sanMiguel':
+      loadTrack('12')
+      break
+      case 'fajalauza':
+      loadTrack('13')
+      break
+      case 'murallaAlberzana':
+      loadTrack('14')
+      break
       default:
-      break;
+      break
     }
   })
   
