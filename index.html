@@ -141,8 +141,12 @@
     sound.playing() ? sound.pause() : sound.play()
   }
   
-  const togglePlayButton = () => {
-    $('#play-pause-button').toggleClass('paused')
+  const setButtonAsPlaying = () => {
+    $('#play-pause-button').addClass('paused')
+  }
+
+  const setButtonAsPaused = () => {
+    $('#play-pause-button').removeClass('paused')
   }
   
   const hotspot = (hotspotDiv, args) => {
@@ -156,7 +160,7 @@
   }
   
   $('body').on('click', '#play-pause-button', event => {
-    togglePlayButton()
+    !sound.playing() ? setButtonAsPlaying() : setButtonAsPaused()
     handlePlayPause()
   })
   
@@ -473,6 +477,9 @@
   })
   
   viewer.on('load', () => {
+    if (sound) {
+      sound.stop()
+    }
     switch (viewer.getScene()) {
       case 'sanCristobal':
       loadTrack('1')
@@ -528,12 +535,12 @@
       html5: true
     })
     sound.once('load', () => {
+      setButtonAsPlaying()
       setTimeout(() => handlePlayPause(), 2000)
     })
     sound.on('end', () => {
-      togglePlayButton()
+      setButtonAsPaused()
     })
-    togglePlayButton()
   }
 </script>
 </body>
