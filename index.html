@@ -14,7 +14,7 @@
     
     #pannellum-container {
       margin: 0 auto;
-      height: 600px;
+      height: 500px;
       
       font-family: 'Guardian Sans Web', 'Guardian Sans', 'Roboto', 'Helvetica', sans-serif;
     }
@@ -52,6 +52,13 @@
       width: 36px;
       background-image: url(/icon/info.svg);
     }
+    
+    .custom-scene-info-place-icon {
+      height: 36px;
+      width: 36px;
+      background-image: url(/icon/info-place.svg);
+    }
+    
     div.custom-tooltip span {
       visibility: hidden;
       position: absolute;
@@ -81,7 +88,7 @@
     }
     
     .playpause label {
-      display: block;
+      display: inline-block;
       box-sizing: border-box;
       width: 0;
       height: 74px;
@@ -91,6 +98,29 @@
       border-style: double;
       border-width: 0px 0 0px 60px;
     }
+    
+    #hide-info-icons-button {
+      float: left;
+      height: 74px;
+      width: 74px;
+      background-color: transparent;
+      background-image: url('/icon/hide-info.svg');
+      border-color: transparent transparent transparent transparent;
+      box-sizing: border-box;
+      background-repeat: no-repeat;
+    }
+    
+    #hide-scene-icons-button {
+      float: right;
+      height: 74px;
+      width: 74px;
+      background-color: transparent;
+      background-image: url('/icon/hide-scenes.svg');
+      border-color: transparent transparent transparent transparent;
+      box-sizing: border-box;
+      background-repeat: no-repeat;
+    }
+    
     #play-pause-button {
       border: 0;
       background: transparent;
@@ -130,11 +160,16 @@
       <div class="col-xs-12">
         <button id="play-pause-button"></button>
         <button id="hide-info-icons-button"></button>
+        <button id="hide-scene-icons-button"></button>        
       </div>
     </div>
     <div class="row text-center newTab">
       <div class="col-xs-12">
-        <span><a href="">Haz clic aquí para ver el recorrido a pantalla completa en otra pestaña</a></span>
+        <span style="font-weight:700;">
+          <a href="">
+            <em>(Haz clic aquí para ver el recorrido a pantalla completa en otra pestaña)</em>
+          </a>
+        </span>
       </div>
     </div>
   </div>
@@ -146,7 +181,7 @@
 <script>
   let sound = null
   let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-  let infoIconsAreHidden = false
+  let infoIconsAreHidden = false, sceneIconsAreHidden = false
   
   const handlePlayPause = () => {
     sound.playing() ? sound.pause() : sound.play()
@@ -178,10 +213,24 @@
   $('body').on('click', '#hide-info-icons-button', event => {
     if (infoIconsAreHidden) {
       $('.custom-scene-info-icon').removeClass('hidden')
+      $('.custom-scene-info-place-icon').removeClass('hidden')
       infoIconsAreHidden = false
     } else {
       $('.custom-scene-info-icon').addClass('hidden')
+      $('.custom-scene-info-place-icon').addClass('hidden')
       infoIconsAreHidden = true
+    }
+  })
+  
+  $('body').on('click', '#hide-scene-icons-button', event => {
+    if (sceneIconsAreHidden) {
+      $('.custom-scene-forwards-icon').removeClass('hidden')
+      $('.custom-scene-back-icon').removeClass('hidden')
+      sceneIconsAreHidden = false
+    } else {
+      $('.custom-scene-forwards-icon').addClass('hidden')
+      $('.custom-scene-back-icon').addClass('hidden')
+      sceneIconsAreHidden = true
     }
   })
   
@@ -318,7 +367,7 @@
         {
           pitch: 19.063622065737295,
           yaw: -172.20744711950533,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Puerta Monaita</strong>'
@@ -327,7 +376,7 @@
         {
           pitch: 16.022365601609632,
           yaw: 122.6808685797457,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Iglesia de San Cristóbal</strong>'
@@ -369,7 +418,7 @@
         {
           pitch: 2.683137419839654,
           yaw: -88.52565787044635,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Aljibe del Rey</strong>'
@@ -396,7 +445,7 @@
         {
           pitch: 5.331801187451328,
           yaw: -173.89882659057417,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Iglesia de San Cristóbal</strong>'
@@ -438,7 +487,7 @@
         {
           pitch: 3.2503513649735174,
           yaw: -191.81968397543807,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Iglesia de San Cristóbal</strong>'
@@ -516,7 +565,7 @@
         {
           pitch: 4.946107969879905,
           yaw: -212.09334524235533,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Iglesia de San Cristóbal</strong>'
@@ -525,7 +574,7 @@
         {
           pitch: 4.304908243787697,
           yaw: -195.1479447747873,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Aljibe del Rey</strong>'
@@ -567,7 +616,7 @@
         {
           pitch: 3.3836751914488916,
           yaw: -6.599400716060622,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>La Alhambra</strong>'
@@ -594,7 +643,7 @@
         {
           pitch: -8.046044269054367,
           yaw: 65.02879370889607,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Santa Isabel La Real</strong>'
@@ -603,7 +652,7 @@
         {
           pitch: -6.6630199876805065,
           yaw: 103.28376455023246,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Dar-al-Horra</strong>'
@@ -612,7 +661,7 @@
         {
           pitch: 3.5173989673221717,
           yaw: -180.622614003006,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>San Cristóbal</strong>'
@@ -754,7 +803,7 @@
         {
           pitch: -0.9951563842896857,
           yaw: -147.97143680119342,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>La Alhambra</strong>'
@@ -814,7 +863,7 @@
         {
           pitch: -0.869801995034351,
           yaw: 43.06493896909137,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>La Alhambra</strong>'
@@ -823,7 +872,7 @@
         {
           pitch: 19.70023858452062,
           yaw: -133.246501708941687,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>La muralla Nazarí</strong>'
@@ -901,7 +950,7 @@
         {
           pitch: -3.5674073919184557,
           yaw: -45.342062592531335,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>La Alhambra</strong>'
@@ -952,7 +1001,7 @@
         {
           pitch: 10.051546171194131,
           yaw: 143.0549429045988,
-          cssClass: 'custom-scene-info-icon',
+          cssClass: 'custom-scene-info-place-icon',
           createTooltipFunc: hotspot,
           createTooltipArgs: {
             text: '<strong>Ermita de San Miguel</strong>'
